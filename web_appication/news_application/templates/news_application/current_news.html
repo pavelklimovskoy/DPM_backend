@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>News</title>
+</head>
+<body>
+
+<div style="text-align: center;">
+    <p>Новость с id={{ news.id }}</p>
+    <p>{{ news.title }}</p>
+    <p><img src="{{ news.title_image.url }}" alt=""/></p>
+    {% autoescape off %}
+        <p>{{ news.body }}</p>
+    {% endautoescape %}
+    <p>{{ news.views_count }}</p>
+    <p><a href="http://127.0.0.1:8000/news/">К новостям</a></p>
+</div>
+
+
+</body>
+</html>

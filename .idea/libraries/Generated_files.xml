@@ -1,0 +1,20 @@
+<component name="libraryTable">
+  <library name="Generated files" type="javaScript">
+    <properties>
+      <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/web_appication/static/js/AuthLoginPage.min.js" />
+        <item url="file://$PROJECT_DIR$/web_appication/static/js/SuperParticles.min.js" />
+        <item url="file://$PROJECT_DIR$/web_appication/static/js/about_page.min.js" />
+        <item url="file://$PROJECT_DIR$/web_appication/static/js/pixi.min.js" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/web_appication/static/js/AuthLoginPage.min.js" />
+      <root url="file://$PROJECT_DIR$/web_appication/static/js/SuperParticles.min.js" />
+      <root url="file://$PROJECT_DIR$/web_appication/static/js/about_page.min.js" />
+      <root url="file://$PROJECT_DIR$/web_appication/static/js/pixi.min.js" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

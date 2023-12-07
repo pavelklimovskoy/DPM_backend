@@ -1,0 +1,42 @@
+version: '3.7'
+
+name: "digitalprofessionalme-drf"
+
+services:
+  db:
+    image: postgres
+    container_name: dpm-database-postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: maybe-strong-password-!!!
+      POSTGRES_DB: django-db
+      POSTGRES_USER: database-member-2023
+      PGPORT: 5000
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5000:5000"
+#
+#  main:
+#    container_name: django-web-server
+#    depends_on:
+#      - db
+#    command: "poetry run python manage.py runserver 0.0.0.0:7000"
+#    build: .
+#    env_file:
+#      - configs/prod.env
+#    volumes:
+#      - .:/usr/src/app
+#    ports:
+#      - "7000:7000"
+#
+#  nginx:
+#    container_name: nginx-reverse-proxy
+#    depends_on:
+#      - main
+#    build:
+#      context: .
+#      dockerfile: Dockerfile.nginx
+#    restart: always
+#    ports:
+#      - '80:8080'

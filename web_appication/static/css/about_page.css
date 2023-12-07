@@ -1,0 +1,58 @@
+.hello {
+    margin-top: 2%;
+    margin-bottom: 5%;
+    font-family: Andale Mono, monospace;
+    font-size: 25px;
+    text-align: center;
+    /* display: flex; */
+    justify-content: center;
+}
+
+.person-info {
+    margin-top: 5%;
+    font-family: Andale Mono, monospace;
+    font-size: 20px;
+    text-align: center;
+    /* display: flex; */
+    justify-content: center;
+}
+
+.a {
+    margin-top: 5%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    text-align: center;
+    /* display: flex; */
+    justify-content: center;
+}
+
+.flash {
+    text-align: center;
+    padding: 10px;
+}
+
+.flash.success {
+    border: 1px solid #21DB56;
+    background: #AEFFC5;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.item {
+    flex: 0 1 calc(100% / 3 - 20px * 2);
+    margin: 20px;
+}
+
+.item-box {
+    width: 100%;
+    text-align: center;
+}
+
+.item-box img {
+    border-radius: 100%;
+    width: 50%;
+}

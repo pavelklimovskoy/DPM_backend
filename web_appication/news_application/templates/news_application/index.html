@@ -1,0 +1,46 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    {% if debug == True %}
+        <link rel="stylesheet" href="{% static 'css/about_page.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style-particles.css' %}">
+    {% else %}
+        <link rel="stylesheet" href="{% static 'css/about_page.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style-particles.min.css' %}">
+    {% endif %}
+</head>
+<body>
+
+
+<div class="mainBlock">
+    <div style="text-align: center;">
+        <h1>Страница с новостями проекта</h1>
+
+        {% for post in news %}
+            {% if post.is_published %}
+                <p>{{ post.title }}</p>
+                <p><img src="{{ post.title_image.url }}" alt=""/></p>
+                <p><a href="http://127.0.0.1:8000/news/{{ post.id }}">Читать-кайфовать</a></p>
+
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+<!-- particles.js container -->
+<div id="particles-js"></div>
+
+<!-- Scripts -->
+<script src="{% static 'js/pixi.min.js' %}"></script>
+<script src="{% static 'js/SuperParticles.min.js' %}"></script>
+<script src="{% static 'js/about_page.min.js' %}"></script>
+
+</body>
+</html>
