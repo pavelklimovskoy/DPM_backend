@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="styles/style.css">
+
+    <title>Digital Professional Me Auth</title>
+</head>
+<body>
+    <!-- <div class="title_text"> -->
+        
+    <!-- </div> -->
+
+    <div class="login_page">
+        <div>
+            <p class="title_text">Digital Professional Me</p>
+        </div>
+        
+        <div class="login_form" id="login" style="display: block;">
+            <p class="welcome_text">Добро пожаловать!</p>
+    
+            <form method="post" id="loginForm" class="needs-validation" action="/login">
+    
+                <div>
+                    <input class="input_data" name="name" type="text" id="nameRegister" placeholder="Имя">
+                </div>
+
+                <div>
+                    <input class="input_data" name="email" type="email" id="emailLogin" placeholder="Почта">
+                </div>
+    
+    
+                <div>
+                    <input class="input_password" name="password" type="password" id="passwordLogin" placeholder="Пароль">
+                </div>
+
+                <div>
+                    <input class="input_password" name="repeat_password" type="password" id="passwordLogin" placeholder="Повтор пароля">
+                </div>
+    
+                <div class="label_forgot">
+                    <a class="label_forgot" href="javascript:showRegisterForm()">Забыли пароль?</a>
+                </div>
+    
+                <input id="loginButton" class="login_button" type="submit" value="Войти">
+            </form>
+    
+            <div class="text_hint">
+                <p class="label_question">Уже есть аккаунт?</p><a class="label_register" href="javascript:showRegisterForm()">Вход</a>
+            </div>
+    
+        </div>
+    </div>
+
+
+
+</body>
+</html>

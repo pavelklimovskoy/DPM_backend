@@ -1,0 +1,274 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #D9E1E8;;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.title_text {
+    color: #323232;
+
+    font-family: Inter;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.login_page {
+    text-align: center!important;
+}
+
+
+.login_form{
+    border-radius: 27px;
+    background: white;
+
+    width: min-content;;
+    height: min-content;
+    padding-left: 70px;
+    padding-right: 70px;
+
+    margin-top: 64px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.reset_form{
+    border-radius: 27px;
+    background: white;
+
+    width: min-content;;
+    height: min-content;
+    padding-left: 70px;
+    padding-right: 70px;
+
+    margin-top: 64px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 52px;
+}
+
+
+.welcome_text {
+    text-align: center!important;
+    color: #272727;
+
+    padding-top: 34px;
+    padding-left: 95;
+    padding-right: 95;
+
+    padding-bottom: 32px;
+
+    font-family: Inter;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.send_text {
+    text-align: center!important;
+    color: #272727;
+
+    padding-top: 10px;
+    padding-left: 95;
+    padding-right: 95;
+
+    padding-bottom: 10px;
+
+    font-family: Inter;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.input_data {
+    width: 309px;
+    height: 52px;
+    flex-shrink: 0;
+
+    border-radius: 54px;
+    border: 1px solid #787878; 
+
+    margin-bottom: 19px;
+
+    color: #272727;
+
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+    padding-left: 27px;
+}
+
+.input_password {
+    width: 309px;
+    height: 52px;
+    flex-shrink: 0;
+
+    border-radius: 54px;
+    border: 1px solid #787878; 
+
+    margin-bottom: 19px;
+
+    color: #272727;
+
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+    padding-left: 27px;
+    -webkit-text-security: square;
+}
+
+.input_data::placeholder {
+    color: #787878;
+
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+    padding-top: 17px;
+    /* padding-left: 27px; */
+  }
+
+.login_button {
+    display: flex;
+    width: 309px;
+    height: 57px;
+    padding: 15px 25px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+
+    border-radius: 47px;
+    background: #A27FDA;
+    border: 0;
+
+    color: #FFF;
+
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.reset_button {
+    display: flex;
+    width: 309px;
+    height: 57px;
+    padding: 15px 25px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+
+    border-radius: 47px;
+    background: #A27FDA;
+    border: 0;
+
+    color: #FFF;
+
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+    /* margin-bottom: 37px; */
+}
+
+
+.label_question {
+    color: #272727;
+
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+
+    display: inline-block;
+}
+
+.label_register {
+    color: #A17FDA;
+
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-decoration: none;
+
+    display: inline-block;
+
+    margin-left: 16px;
+    margin-bottom: 52px;
+}
+
+.label_forgot {
+    color: #838383;
+
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-decoration: none;
+
+    padding-bottom: 33px;    
+}
+
+.text_hint {
+    padding-top: 34px;
+    margin-left: auto;
+}
+
+.message_text {
+    color: #272727;
+    width: 253px;
+    text-align: center;
+    /* Текст */
+    font-family: "Segoe UI";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.to_main_page {
+    color: #A17FDA;
+
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+
+    /* margin-top: 22px; */
+
+    padding-top: 12px;
+    text-decoration: none;
+}
+
+.ok_icon {
+    margin-top: 27px;
+}
