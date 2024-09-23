@@ -44,28 +44,29 @@ INSTALLED_APPS = [
     'django_extensions',
     'djoser',
     'tinymce',
-    'cv_application.apps.CvApplicationConfig',
-    'state_application.apps.StateApplicationConfig',
-    'auth_application.apps.AuthApplicationConfig',
-    'profile_application.apps.ProfileApplicationConfig',
-    'news_application.apps.NewsApplicationConfig',
-    'about_application.apps.AboutApplicationConfig',
-    'employee_application.apps.EmployeeApplicationConfig',
-    'contact_application.apps.ContactApplicationConfig',
-    'country_application.apps.CountryApplicationConfig',
-    'personal_info_application.apps.PersonalInfoApplicationConfig',
-    'skill_application.apps.SkillApplicationConfig',
-    'document_application.apps.DocumentApplicationConfig',
-    'location_application.apps.LocationApplicationConfig',
-    'experience_application.apps.ExperienceApplicationConfig',
-
+    # 'api.cv_application.apps.CvApplicationConfig',
+    # 'api.state_application.apps.StateApplicationConfig',
+    # 'api.auth_application.apps.AuthApplicationConfig',
+    # 'api.profile_application.apps.ProfileApplicationConfig',
+    # 'api.news_application.apps.NewsApplicationConfig',
+    # 'api.about_application.apps.AboutApplicationConfig',
+    # 'api.employee_application.apps.EmployeeApplicationConfig',
+    # 'api.contact_application.apps.ContactApplicationConfig',
+    # 'api.country_application.apps.CountryApplicationConfig',
+    # 'api.personal_info_application.apps.PersonalInfoApplicationConfig',
+    # 'api.skill_application.apps.SkillApplicationConfig',
+    # 'api.document_application.apps.DocumentApplicationConfig',
+    # 'api.location_application.apps.LocationApplicationConfig',
+    # 'api.experience_application.apps.ExperienceApplicationConfig',
+    'auth_app',
+    'skills_viewer',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # 'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -150,11 +151,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "static/"
-# STATIC_ROOT = "static/"
+STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, '/static/')
 STATICFILES_DIRS = [BASE_DIR / "static"]
+
+
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_ROOT = os.path.join(BASE_DIR, '/media/')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -166,7 +169,7 @@ RCHILLI_USER = os.environ.get("RCHILLI_USER"),
 
 API_VERSION = "1.0"
 
-AUTH_USER_MODEL = 'profile_application.Profile'
+AUTH_USER_MODEL = 'auth_app.UserProfile'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -268,3 +271,9 @@ INTERNAL_IPS = [
     "127.0.0.1",
     # ...
 ]
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+EMAIL_TEMPLATE_NAME = 'registration/password_reset_email.html'
+EMAIL_SUBJECT_TEMPLATE_NAME = 'registration/password_reset_subject.txt'

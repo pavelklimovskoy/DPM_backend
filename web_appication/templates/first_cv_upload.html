@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+
+    <style>
+        .custom-file-input {
+            border: 1px solid #ccc;
+            padding: 5px;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+
+        input[type='file'] {
+            
+            margin-top: 20px;
+            
+            display: flex;
+            width: 309px;
+            height: 57px;
+            padding: 15px 25px;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+
+            border-radius: 47px;
+            background: #A27FDA;
+            border: 0;
+
+            color: #FFF;
+
+            font-family: Inter;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+        }
+    </style>
+
+    <title>Digital Professional Me Auth</title>
+</head>
+<body>
+<!-- <div class="title_text"> -->
+
+<!-- </div> -->
+
+<div class="login_page" style="width: 654px;">
+    <div class="login_form" id="login" style="display: block; padding: 51px;">
+        <p class="welcome_text">Начнем заполнение профиля вашего профессионального двойника</p>
+        <p>Загрузите резюме в формате .pdf либо прикрепите ссылку </p>
+
+        <form id="file-upload-form" method="post" enctype="multipart/form-data" action="cv-upload/">
+            {% csrf_token %}
+            {{ form.file }}
+            <input type="file" name="file" onchange="handleFileSelect(event)">
+        </form>
+    </div>
+</div>
+<script>
+    function handleFileSelect(event) {
+        document.getElementById('file-upload-form').submit();
+    }
+</script>
+
+</body>
+</html>

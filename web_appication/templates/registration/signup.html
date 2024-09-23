@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+
+    <title>Digital Professional Me Auth</title>
+</head>
+<body>
+<!-- <div class="title_text"> -->
+
+<!-- </div> -->
+
+<div class="login_page">
+    <div>
+        <p class="title_text">Digital Professional Me</p>
+    </div>
+
+    <div class="login_form" id="login" style="display: block;">
+        <p class="welcome_text">Добро пожаловать!</p>
+
+        <form method="post" id="loginForm" class="needs-validation" action="/accounts/signup/">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+            <input id="loginButton" class="login_button" type="submit" value="Войти">
+        </form>
+
+        <div class="text_hint">
+            <p class="label_question">Уже есть аккаунт?</p><a class="label_register" href="/accounts/login/">Вход</a>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

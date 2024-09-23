@@ -4,7 +4,7 @@ name: "digitalprofessionalme-drf"
 
 services:
   db:
-    image: postgres
+    image: postgres:15.6
     container_name: dpm-database-postgres
     restart: always
     environment:

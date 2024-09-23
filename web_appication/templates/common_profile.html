@@ -1,0 +1,721 @@
+{% load static %}
+
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Общий вид профиля</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+    <style>
+        body {
+            background-color: #D9E1E8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+        }
+
+        #sun_container {
+            width: 100%;
+            height: 300px;
+        }
+
+        .control_button {
+            display: inline;
+            width: 100%;
+            padding: 15px 25px;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+
+            border-radius: 47px;
+            background: white;
+            border: solid 3px;
+            border-color: #E3E3E3;
+
+            /* color: #FFF; */
+
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+
+            margin-bottom: 8px;
+
+            -moz-transition: all .2s ease-in;
+            -o-transition: all .2s ease-in;
+            -webkit-transition: all .2s ease-in;
+            transition: all .2s ease-in;
+            /* background: #f5f5f5;  */
+        }
+
+        .control_button:hover {
+            background: #A17FDA;
+            border-color: #A17FDA;
+        }
+
+        .rounded_badge {
+            /* display: inline; */
+            width: 100%;
+            /* padding: 15px 25px; */
+            /* justify-content: center; */
+            /* align-items: start; */
+            /* gap: 10px; */
+            flex-shrink: 0;
+
+            padding: 20px 20px 0px 20px;
+            vertical-align: baseline;
+            border-radius: 34px;
+            background: #F3F3F3;
+            border: none;
+
+            /* color: gray; */
+
+
+            font-size: 14px;
+            /* font-style: normal;
+            font-weight: 700;
+            line-height: normal; */
+
+            margin-bottom: 8px;
+        }
+
+        .dot {
+            height: 46px;
+            width: 46px;
+            background-color: #8EB5F1;
+            border-radius: 50%;
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+        .dot_small {
+            height: 9px;
+            width: 9px;
+            background-color: #8EB5F1;
+            border-radius: 50%;
+            display: inline-block;
+            margin-top: 5px;
+            margin-right: 8px;
+        }
+
+        .hard {
+            background-color: #F5D83B !important;
+        }
+
+        .soft {
+            background-color: #FF998B !important;
+        }
+
+        .other {
+            background-color: #64DD9C !important;
+        }
+
+
+        .right_arrow {
+            margin-top: 9px;
+        }
+
+        .right_arrow:hover {
+            cursor: pointer;
+        }
+
+        .person_type_info {
+            font-size: 14pt;
+        }
+
+        .vis-timeline {
+            border: none !important;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 15pt;
+            background: white;
+        }
+
+        .vis-item {
+            border: none !important;
+            background-color: #D9D9D9 !important;
+            border-radius: 5px !important;
+            font-size: 10pt !important;
+            font-weight: bold !important;
+            color: #272727 !important;
+            /* box-shadow: 5px 5px 20px rgba(128,128,128, 0.5); */
+        }
+
+        .vis-item, .vis-item.vis-line {
+            border-width: 1px;
+        }
+
+        .vis-item.vis-dot {
+            border-width: 10px;
+            border-radius: 10px;
+        }
+
+        .vis-item.vis-selected {
+            border-color: green;
+            background-color: lightgreen;
+        }
+
+        .vis-time-axis .vis-text {
+            color: purple;
+            padding-top: 10px;
+            padding-left: 10px;
+        }
+
+        .vis-time-axis .vis-text.vis-major {
+            border: none !important;
+            font-weight: bold;
+            font-size: 10px;
+            color: #969696;
+        }
+
+        .vis-time-axis .vis-grid.vis-minor {
+            border: none !important;
+        }
+
+
+        .vis-time-axis .vis-grid.vis-major {
+
+            border: none !important;
+        }
+
+        .vis-label .vis-inner {
+            height: 60px;
+            color: #272727 !important;
+        }
+
+        .vis-current-time {
+            background-color: #7B7B7B !important;
+
+        }
+
+        .vis-panel {
+            border: none !important;
+        }
+
+    </style>
+
+
+    <script src="{% static 'node_modules/vis-timeline/dist/vis-timeline-graph2d.min.js' %}"></script>
+    <link href="{% static 'node_modules/vis-timeline/dist/vis-timeline-graph2d.css' %}" rel="stylesheet"
+          type="text/css"/>
+</head>
+<body>
+
+<!-- Header -->
+<nav class="navbar navbar-expand-md fw-semibold">
+    <div class="container">
+        <a class="navbar-brand  fw-bold abs" href="#">
+            Digital professional me
+        </a>
+        <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="collapseNavbar">
+            <ul class="navbar-nav ms-auto mt-3">
+                <li class="nav-item me-5">
+                    <a href="#" class="nav-link text-dark">Профиль</a>
+                </li>
+
+                <li class="nav-item me-5">
+                    <a href="#" class="nav-link text-dark">Настройки</a>
+                </li>
+
+                <li class="nav-item me-5">
+                    <a href="#" class="nav-link text-dark">О нас</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-dark" onclick="document.getElementById('logout-form').submit();"
+                       class="header__tabs__rules">Выход</a>
+
+                    <form id="logout-form" action="/accounts/logout/" method="post" style="display:none;">
+                        {% csrf_token %}
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!---->
+
+<div class="container pt-5">
+    <div class="row row-cols-1 row-cols-md-3 gx-3">
+        <div class="col mb-3 mb-md-0">
+            <div class="bg-white rounded-4 pt-3 h-100">
+                <div class="container pb-3">
+                    <p class="h5"><img class="me-2" src="../static/img/skills.svg" width="20px">Мои навыки</p>
+
+                    <div class="rounded_badge" id="my_skills-0">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-2">
+                                    <span class="dot soft"></span>
+                                </div>
+
+                                <div class="col-8">
+                                    <p class="fw-bold">Конструирование</p>
+                                    <p class="text-muted fw-semibold">3 навыка</p>
+                                </div>
+
+                                <div class="col-2 ">
+                                    <img id="my_skills_show_button-0" class="right_arrow" src="../static/img/right.svg"
+                                         width="34px">
+                                </div>
+                            </div>
+
+                            <div class="row list_elem" id="additional_info-0" hidden="true">
+                                <div class="col-1">
+                                </div>
+                                <div class="col-11 fw-bold">
+                                    <p>
+                                    <div class="dot_small list_elem"></div>
+                                    Power Point</p>
+                                    <p>
+                                    <div class="dot_small"></div>
+                                    Разработка Web-приложений</p>
+                                    <p>
+                                    <div class="dot_small"></div>
+                                    AucoCad</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="rounded_badge" id="my_skills-1">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-2">
+                                    <span class="dot hard"></span>
+                                </div>
+
+                                <div class="col-8">
+                                    <p class="fw-bold">Менеджмент</p>
+                                    <p class="text-muted fw-semibold">2 навыка</p>
+                                </div>
+
+                                <div class="col-2 ">
+                                    <img id="my_skills_show_button-1" class="right_arrow" src="../static/img/right.svg"
+                                         width="34px">
+                                </div>
+
+                                <div class="row list_elem" id="additional_info-1" hidden="true">
+                                    <div class="col-1">
+                                    </div>
+                                    <div class="col-11 fw-bold">
+                                        <p>
+                                        <div class="dot_small list_elem"></div>
+                                        Power Point</p>
+                                        <p>
+                                        <div class="dot_small"></div>
+                                        Разработка Web-приложений</p>
+                                        <p>
+                                        <div class="dot_small"></div>
+                                        AucoCad</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="rounded_badge" id="my_skills-2">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-2">
+                                    <span class="dot"></span>
+                                </div>
+
+                                <div class="col-8">
+                                    <p class="fw-bold">Компьютер</p>
+                                    <p class="text-muted fw-semibold">5 навыков</p>
+                                </div>
+
+                                <div class="col-2 ">
+                                    <img id="my_skills_show_button-2" class="right_arrow" src="../static/img/right.svg"
+                                         width="34px">
+                                </div>
+
+                                <div class="row list_elem" id="additional_info-2" hidden="true">
+                                    <div class="col-1">
+                                    </div>
+                                    <div class="col-11 fw-bold">
+                                        <p>
+                                        <div class="dot_small list_elem"></div>
+                                        Power Point</p>
+                                        <p>
+                                        <div class="dot_small"></div>
+                                        Разработка Web-приложений</p>
+                                        <p>
+                                        <div class="dot_small"></div>
+                                        AucoCad</p>
+                                        <p>
+                                        <div class="dot_small"></div>
+                                        Разработка Web-приложений</p>
+                                        <p>
+                                        <div class="dot_small"></div>
+                                        AucoCad</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col mb-3 mb-md-0">
+            <div class="bg-white rounded-4 pt-3 h-100">
+                <div class="container">
+                    <p class="h5"><img class="me-2" src="../static/img/pie.svg" width="20px">Спектр навыков</p>
+                    <div id="sun_container"></div>
+                    <div class="row pt-5">
+                        <div class="col align-self-center" align="center">
+                            <div class="d-inline-block">
+                                <img class="me-2" src="../static/img/person_type.svg" width="40px">
+                            </div>
+
+                            <div class="d-inline-block">
+                                <p class="fw-bold person_type_info">две развитые сферы и наличие soft skills</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col mb-3 mb-md-0">
+            <div class="bg-white rounded-4 pt-3">
+                <div class="container">
+                    <p class="h5"><img class="me-2" src="../static/img/Subtract.svg" width="19px">Варианты развития</p>
+                    <div class="container pb-5">
+                        <div class="rounded_badge">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-2">
+                                        <span class="dot hard"></span>
+                                    </div>
+
+                                    <div class="col-8">
+                                        <p class="fw-bold">Разработчик</p>
+                                        <p class="text-muted">Разработчик</p>
+                                    </div>
+
+                                    <div class="col-2 ">
+                                        <img class="right_arrow" src="../static/img/right.svg" width="34px">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="rounded_badge">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-2">
+                                        <span class="dot soft"></span>
+                                    </div>
+
+                                    <div class="col-8">
+                                        <p class="fw-bold">Разработчик</p>
+                                        <p class="text-muted">Разработчик</p>
+                                    </div>
+
+                                    <div class="col-2 ">
+                                        <img class="right_arrow" src="../static/img/right.svg" width="34px">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="rounded_badge">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-2">
+                                        <span class="dot other"></span>
+                                    </div>
+
+                                    <div class="col-8">
+                                        <p class="fw-bold">Разработчик</p>
+                                        <p class="text-muted">Разработчик</p>
+                                    </div>
+
+                                    <div class="col-2 ">
+                                        <img class="right_arrow" src="../static/img/right.svg" width="34px">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="rounded_badge">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-2">
+                                        <span class="dot"></span>
+                                    </div>
+
+                                    <div class="col-8">
+                                        <p class="fw-bold">Разработчик</p>
+                                        <p class="text-muted">Разработчик</p>
+                                    </div>
+
+                                    <div class="col-2 ">
+                                        <img class="right_arrow" src="../static/img/right.svg" width="34px">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4 gx-3 row-cols-1 row-cols-md-12">
+        <div class="col col-md-8 mb-3 mb-md-0">
+            <div class="bg-white rounded-4 px-4 pt-3 h-100">
+                <p class="fw-bold" style="font-size: 20pt;"><img class="me-2" src="../static/img/Component%201.svg"
+                                                                 width="23px" height="15px">Таймлайн</p>
+                <div id="visualization"></div>
+                <br>
+            </div>
+        </div>
+
+        <div class="col col-md-4">
+            <div class="block bg-white rounded-4 pb-4 pt-3">
+                <div class="container">
+                    <p class="h5 mx-3 my-3"><img class="me-2" src="../static/img/Group.svg"
+                                                 width="20px"><b>Управление</b></p>
+                    <div class="container text-center">
+                        <button class="control_button">Подтвердить навык</button>
+                        <button class="control_button">Редактировать таймлайн</button>
+                        <button class="control_button">Добавить цель</button>
+                        <button class="control_button">Изменить резюме</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+
+    function on_move_test() {
+        console.log(111);
+    }
+
+
+    // DOM element where the Timeline will be attached
+    var container = document.getElementById('visualization');
+
+    // Create a DataSet (allows two way data-binding)
+    var items = new vis.DataSet(
+        [
+            {id: 1, content: 'item 1', start: '2024-01-20', group: 3},
+            {id: 2, content: 'item 2', start: '2024-03-14', group: 1},
+            {id: 3, content: 'item 3', start: '2023-05-18', group: 3},
+            {id: 4, content: 'item 4', start: '2020-07-01', end: '2024-07-28', group: 2},
+            {id: 5, content: 'item 5', start: '2024-09-25', group: 1},
+            {id: 6, content: 'item 6', start: '2024-11-27', group: 1}
+        ]);
+
+    // Configuration for the Timeline
+    var options = {
+        width: '100%',
+        // height: '252px',
+        // height: '100%',
+        align: 'center',
+        autoResize: true,
+        horizontalScroll: true,
+        // onMoving: on_move_test,
+
+        max: '2100-01-11', // Максимальная дата для отображения
+        min: '1900-01-01', // минимальная дата для отображения
+
+        start: '2000-01-01',
+
+        zoomFriction: 10,
+        zoomMax: 2000000000000,
+        zoomMin: 99000000000,
+        showMajorLabels: false,
+        showMinorLabels: true,
+
+        // timeAxis: {scale: 'day', step: 1}
+        // zoomMax: 100,
+        // zoomMin: 0
+        // clickToUse: true,
+        // margin: {
+        //     item: 20
+        // }
+    };
+
+    var groups = [
+        {
+            id: 1,
+            content: '<b>Курсы</b>',
+            title: 'Курсы',
+            // Optional: a field 'className', 'style', 'order', [properties]
+        },
+        {
+            id: 2,
+            content: '<b>Образование</b>',
+            title: 'Образование',
+        },
+        {
+            id: 3,
+            content: '<b>Опыт работы</b>',
+            title: 'Опыт работы',
+        }
+    ];
+
+    // Create a Timeline
+    let timeline = new vis.Timeline(container, items, groups, options);
+    timeline.redraw();
+
+    // timeline
+
+
+    // Ожидание загрузки DOM
+    function waitForDOM() {
+        if (timeline != null) {
+            timeline._redraw();
+            let view_date = new Date()
+            view_date.setFullYear(view_date.getFullYear() - 2);
+            timeline.moveTo(view_date);
+            // timeline.zoomIn(800000000000);
+        } else {
+            setTimeout(waitForDOM, 300);
+        }
+    }
+
+    // При полной заргрузки страницы происходит обновление Timeline
+    document.addEventListener('DOMContentLoaded', function () {
+        setTimeout(waitForDOM, 300);
+    });
+</script>
+
+<script src="https://cdn.anychart.com/releases/8.12.1/js/anychart-base.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
+<script src="https://cdn.anychart.com/releases/8.12.1/js/anychart-sunburst.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
+<script src="https://cdn.anychart.com/releases/8.12.1/js/anychart-exports.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
+<script src="https://cdn.anychart.com/releases/8.12.1/js/anychart-ui.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
+<script type="text/javascript">
+
+
+    anychart.onDocumentReady(function () {
+        // create data
+        var data = [
+            {
+                name: "London", children: [
+                    {name: "Management"},
+                    {
+                        name: "Sales", children: [
+                            {name: "Analysts"},
+                            {name: "Executives"}
+                        ]
+                    },
+                    {name: "Accounting"}
+                ]
+            },
+            {
+                name: "New York", children: [
+                    {
+                        name: "Technical", children: [
+                            {name: "Team Leaders"},
+                            {name: "Architects"},
+                            {name: "Developers"},
+                            {name: "Testers"}
+                        ]
+                    },
+                    {name: "HR"}
+                ]
+            }
+        ];
+
+
+        // create a chart and set the data
+        let chart = anychart.sunburst(data, "as-tree");
+
+        chart.calculationMode('parent-independent');
+        chart.sort('asc');
+
+        // chart.tooltip().useHtml(true);
+        // chart.labels().useHtml(true);
+
+        // chart
+        // .level(0)
+        // .labels()
+        // .fontFamily('Verdana, sans-serif')
+        // .format('<span style="font-size:14px; word-break: normal; word-wrap: break-word; animation: visible 2s;"></span>');
+
+        // chart
+        // .level(1)
+        // .labels()
+        // .fontFamily('Verdana, sans-serif')
+        // .format('<span style="font-size:14px; word-break: normal; word-wrap: break-word;">{%name}</span>');
+
+        // chart
+        // .level(2)
+        // .labels()
+        // .fontFamily('Verdana, sans-serif')
+        // .format('<span style="font-size:12px; word-break: normal; word-wrap: break-word;">{%name}</span>');
+
+        // chart
+        // .tooltip()
+        // .fontFamily('Verdana, sans-serif')
+        // .format("<h5 style='font-size:16px;"+
+        //         "margin: 0.25rem 0;'>{%name}"+
+        //         "</h5>"+
+        //         "<h6 style='font-size:14px;"+
+        //         "font-weight:400; margin: 0.2rem 0;'>Level: "+
+        //         "<b>{%value}{groupsSeparator:\\,}</b></h6>"+
+        //         "<h6 style='font-size:14px; font-weight:400; margin: 0.2rem 0;'></b></h6>");
+
+        // Set avatar
+        chart.fill({
+            src: 'https://static.anychart.com/images/kitty.png',
+            mode: 'tile'
+        })
+
+        chart.labels().format("<span style='font-size:10px; " +
+            "word-break: normal;" +
+            "word-wrap: break-word;'>
+        {%shortName}</span>");
+
+        chart.labels().position('circular');
+        chart.container('sun_container');
+
+        chart.draw();
+        chart.autoRedraw(true);
+    });
+
+
+    document.getElementById("my_skills_show_button-0").onclick = function () {
+        let list_skills = document.getElementById("additional_info-0");
+        list_skills.hidden = !list_skills.hidden;
+    };
+
+    document.getElementById("my_skills_show_button-1").onclick = function () {
+        let list_skills = document.getElementById("additional_info-1");
+        list_skills.hidden = !list_skills.hidden;
+    };
+
+    document.getElementById("my_skills_show_button-2").onclick = function () {
+        let list_skills = document.getElementById("additional_info-2");
+        list_skills.hidden = !list_skills.hidden;
+    };
+
+</script>
+</body>
+<footer>
+    <style>
+        .vis-timeline {
+            outline: none;
+        }
+    </style>
+</footer>
+</html>

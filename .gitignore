@@ -1,1 +1,4 @@
 /web_appication/media/
+/postgres-data/
+/.venv/
+/.idea/
